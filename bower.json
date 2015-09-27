@@ -1,0 +1,34 @@
+{
+  "name": "addressbook",
+  "version": "1.0.0",
+  "authors": [
+    "Emmanuel Chigbo <chigboemmanuel@gmail.com>"
+  ],
+  "description": "An address book app",
+  "main": "public/assets/js/main.js",
+  "dependencies": {
+    "get-size": "~1.2.2",
+    "eventEmitter": "~4.2.11",
+    "bootstrap": "~3.3.5",
+    "font-awesome": "~4.4.0"
+  },
+  "devDependencies": {},
+  "moduleType": [
+    "node"
+  ],
+  "keywords": [
+    "Address",
+    "contacts",
+    "friends",
+    "phone"
+  ],
+  "license": "MIT",
+  "homepage": "public/index.html",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

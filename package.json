@@ -1,0 +1,44 @@
+{
+  "name": "addressbook",
+  "version": "1.0.0",
+  "description": "An address book for keeping records of the contact information of friends and family",
+  "main": "server.js",
+  "scripts": {
+    "test": "start_test.js"
+  },
+  "dependencies": {
+    "bcrypt-nodejs": "latest",
+    "body-parser": "~1.4.2",
+    "connect-flash": "~0.1.1",
+    "cookie-parser": "~1.0.0",
+    "ejs": "^2.3.4",
+    "express": "~4.5.1",
+    "express-session": "~1.0.0",
+    "jsonwebtoken": "^5.0.5",
+    "method-override": "~2.0.2",
+    "mongoose": "~3.8.0",
+    "morgan": "~1.0.0",
+    "passport": "~0.1.17",
+    "passport-facebook": "~1.0.2",
+    "passport-google-oauth": "~0.1.5",
+    "passport-local": "~0.1.6",
+    "passport-twitter": "~1.0.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/emmanuelscience/MeanAddressBook.git"
+  },
+  "keywords": [
+    "address book",
+    "name",
+    "email",
+    "contact",
+    "phone number"
+  ],
+  "author": "Emmanuel Science",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/emmanuelscience/MeanAddressBook/issues"
+  },
+  "homepage": "https://github.com/emmanuelscience/MeanAddressBook#readme"
+}

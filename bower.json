@@ -10,7 +10,9 @@
     "get-size": "~1.2.2",
     "eventEmitter": "~4.2.11",
     "bootstrap": "~3.3.5",
-    "font-awesome": "~4.4.0"
+    "font-awesome": "~4.4.0",
+    "angular": "1.4.6",
+    "angular-route": "~1.4.7"
   },
   "devDependencies": {},
   "moduleType": [

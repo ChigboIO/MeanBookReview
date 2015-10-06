@@ -1,79 +1,85 @@
-var contact = require('./controllers/contact_controller.js');
+var user = require('./controllers/user-controller');
+var book = require('./controllers/book-controller');
+var review = require('./controllers/review-controller');
 
 // exports.rootRoute = function(Router, passport) {
 // 	Router.route('/').get(rootHomeClosure = function(req, res) {	// the closure here is named.
-// 		res.json({message: 'This is the App HOME'});
+// 		res.render('index');
 // 	});
 
 // 	Router.route('/login')
 // 		.get(rootGetLoginClosure = function(req, res) {
-// 			res.render('login.ejs', { message: req.flash('loginMessage') });
+// 			res.render('login', { message: req.flash('loginMessage') });
 // 		})
-// 		.post(rootPostLoginClosure = function(req, res) {
-// 			//do some login logic here
-// 		});
+// 		.post(passport.authenticate('local-login', {
+// 	        successRedirect : '/profile', // redirect to the secure profile section
+// 	        failureRedirect : '/login', // redirect back to the signup page if there is an error
+// 	        failureFlash : true // allow flash messages
+// 	    }));
 
 // 	Router.route('/signup')
 // 		.get(rootGetSignupClosure = function(req, res) {
-// 			res.render('signup.ejs', { message: req.flash('signupMessage') });
+// 			res.render('signup', { message: req.flash('signupMessage') });
 // 		})
-// 		.post(rootPostSignupClosure = function(req, res) {
-// 			//do some signup logic here
-// 		});
+// 		.post(passport.authenticate('local-signup', {
+// 	        successRedirect : '/profile', // redirect to the secure profile section
+// 	        failureRedirect : '/signup', // redirect back to the signup page if there is an error
+// 	        failureFlash : true // allow flash messages
+// 	    }));
+
+
+// 	Router.route('/profile').get(isLoggedIn, getProfileClosure = function(req, res, next) {
+// 		res.render('profile',  {
+//             user : req.user // get the user out of session and pass to template
+//         });
+// 	});
+
+// 	Router.get('/logout', function(req, res) {
+// 		req.logout();
+// 		res.redirect('/');
+// 	});
 
 // };
 
 exports.apiRoute = function(Router, passport) {
 	
-	Router.route('/').get(apiHomeClosure = function(req, res) {	// the closure here is named.
-		res.render('index')
-	});
-
-
-	Router.route('/login')
-		.get(rootGetLoginClosure = function(req, res) {
-			res.render('login', { message: req.flash('loginMessage') });
+	// The authentication should be handled here. i.e POST login
+	Router.route('/')
+		.get(apiHomeClosure = function(req, res) {	// the closure here is named.
+			res.json({message: 'This is the API HOME'}); // Request isn't coming here afterall
 		})
-		.post(passport.authenticate('local-login', {
-	        successRedirect : '/api/profile', // redirect to the secure profile section
-	        failureRedirect : '/api/login', // redirect back to the signup page if there is an error
-	        failureFlash : true // allow flash messages
-	    }));
+		.post(user.authenticate);
 
 	Router.route('/signup')
-		.get(rootGetSignupClosure = function(req, res) {
-			res.render('signup', { message: req.flash('signupMessage') });
+		.get(function(req, res) {
+			res.json({message: 'API user signup form'});
 		})
-		.post(passport.authenticate('local-signup', {
-	        successRedirect : '/api/profile', // redirect to the secure profile section
-	        failureRedirect : '/api/signup', // redirect back to the signup page if there is an error
-	        failureFlash : true // allow flash messages
-	    }));
+		.post(user.createUser);
 
-	Router.route('/profile').get(isLoggedIn, getProfileClosure = function(req, res, next) {
-		res.render('profile',  {
-            user : req.user // get the user out of session and pass to template
-        });
-	});
+	Router.route('/login')
+		.get(function(req, res) {
+			res.json({message: 'API user login form'});
+		})
+		.post(user.authenticate);
 
-	Router.get('/logout', function(req, res) {
-		req.logout();
-		res.redirect('/api');
-	});
+	Router.route('/users')
+		.get(user.isAuthenticated, user.getAllUsers);
 
-	Router.route('/contacts')
-		.get(isLoggedIn, contact.getAll)
-		.post(isLoggedIn, contact.createContact);
+	Router.route('/books')
+		.get(book.getAll)
+		.post(user.isAuthenticated, book.createBook);
 
-	Router.route('/contacts/:contact_name')
-		.get(isLoggedIn, contact.getContact)
-		.put(isLoggedIn, contact.updateContact)
-		.delete(isLoggedIn, contact.deleteContact);
-};
+	Router.route('/books/:bookIsbn')
+		.get(book.getBook)
+		.put(user.isAuthenticated, book.updateBook)
+		.delete(user.isAuthenticated, book.deleteBook);
 
-isLoggedIn = function(req, res, next) {
-	if(req.isAuthenticated)
-		next();
-	else
-		res.redirect('/api');
+	Router.route('/reviews/:bookIsbn')
+		.get(review.getBookReviews)
+		.post(user.isAuthenticated, review.createBookReview);
+
+	Router.route('/reviews/review/:reviewId')
+		.get(review.getOneReview)
+		.put(user.isAuthenticated, review.updateReview)
+		.delete(user.isAuthenticated, review.deleteReview);
 };

@@ -1,4 +1,4 @@
 module.exports = {
-    db: 'mongodb://127.0.0.1/address_book'
+    DB_URL: 'mongodb://127.0.0.1/book_review'
     //more configurations perculia to development
 };

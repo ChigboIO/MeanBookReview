@@ -1,7 +1,7 @@
 {
-  "name": "addressbook",
+  "name": "bookreview",
   "version": "1.0.0",
-  "description": "An address book for keeping records of the contact information of friends and family",
+  "description": "An application for review of books",
   "main": "server.js",
   "scripts": {
     "test": "start_test.js"
@@ -26,19 +26,19 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/emmanuelscience/MeanAddressBook.git"
+    "url": "git+ssh://git@github.com/emmanuelscience/MeanBookReview.git"
   },
   "keywords": [
-    "address book",
-    "name",
-    "email",
+    "book",
+    "review",
+    "books",
     "contact",
     "phone number"
   ],
   "author": "Emmanuel Science",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/emmanuelscience/MeanAddressBook/issues"
+    "url": "https://github.com/emmanuelscience/MeanBookReview/issues"
   },
-  "homepage": "https://github.com/emmanuelscience/MeanAddressBook#readme"
+  "homepage": "https://github.com/emmanuelscience/MeanBookReview#readme"
 }

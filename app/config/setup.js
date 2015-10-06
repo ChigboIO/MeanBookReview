@@ -18,6 +18,7 @@ var env = require('./env/' + process.env.NODE_ENV + '.js');
 // };
 
 exports.config = {
-	port: process.env.PORT || 3000,
-	dbUrl: env.db || 'mongodb://127.0.0.1/address_book'
+	PORT: process.env.PORT || 3000,
+	JWT_SECRET: 'ilovescotchyscotch',
+	DB_URL: env.DB_URL || 'mongodb://127.0.0.1/book_review'
 };
